@@ -1,0 +1,18 @@
+<template name="post_list">
+	<div class="jumbotron">
+	{{#each posts}}
+		<ul class="list-group">
+			{{> post_info}}
+		</ul>
+	{{else}}
+		No posts yet.
+	{{/each}}
+</div>
+</template>
+
+<template name="post_info">
+	<li class="list-group-item {{bgColor}} font-{{fColor}}">
+		{{content}}, by {{author}} at {{date}}
+		<button class="btn btn-danger"> Delete </button>
+	</li>
+</template>

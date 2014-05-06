@@ -1,0 +1,71 @@
+/* CSS declarations go here */
+body{
+	background-color: #cccccc;
+}
+.post{
+	font-size-adjust: .58;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+.red{
+	background-color: red;
+}
+.blue{
+	background-color: blue;
+}
+.green{
+	background-color: green;
+}
+.yellow{
+	background-color: yellow;
+}
+.black{
+	background-color: black;
+}
+.white{
+	background-color: white;
+}
+
+.font-white{
+	color:white;
+}
+.font-red{
+	color:red;
+}
+.font-green{
+	color:green;
+}
+.font-blue{
+	color:blue;
+}
+.font-yellow{
+	color:yellow;
+}
+.font-black{
+	color:black;
+}
+
+.size-3x3{
+	height:12em;
+	width:12em;
+	padding:0.5em;
+	margin:0.5em;
+}
+
+.size-3x5{
+	height:12em;
+	width:18em;	padding:0.5em;
+	margin:0.5em;
+}
+.size-5x3{
+	height:18em;
+	width:12em;
+	padding:0.5em;
+	margin:0.5em;
+}
+.size-5x5{
+	height:18em;
+	width:18em;
+	padding:0.5em;
+	margin:0.5em;
+}

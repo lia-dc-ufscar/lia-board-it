@@ -1,0 +1,1 @@
+Drawsteps = new Meteor.Collection("drawsteps");

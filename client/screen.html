@@ -1,0 +1,21 @@
+<template name="screen">
+	{{#each posts}}
+			{{> post}}
+	{{else}}
+		No posts yet.
+	{{/each}}
+	{{#each images}}
+			{{> post_image}}
+	{{/each}}
+</template>
+
+<template name="post">
+	<div id="{{_id}}" class= "post size-{{size}} {{bgColor}} font-{{fColor}}" style="top:{{posTop}}px; left: {{posLeft}}px;position:absolute;">
+			<h4>{{content}}</h4>
+			<br><p font-size="1em" align="right">{{{author}}}</p>
+	</div>
+</template>
+
+<template name="post_image">
+	<img id ="{{_id}}" src="{{image}}" style="top:{{posTop}}px;left:{{posLeft}}px; position:absolute"/>
+</template>
