@@ -4,20 +4,32 @@ var drawing = false;
 var lastX = 0;
 var lastY = 0;
 
+var clearCanvas = function(){
+    canvas = $('#canvas')[0];
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);    
+    console.log('cleared');    
+};
+
 Template.teste.drawsteps = function(){
   return Drawsteps.find({}, {sort: {date: -1}});
 }
 
 Template.teste.rendered = function(){
 	drawsteps = Drawsteps.find({}, {sort: {date: -1}});
+    globalStream.on('clear', function(message){
+        clearCanvas();
+    });
 }
 Template.step.rendered = function(e){
-	var canvas = $('#canvas')[0];
+    var canvas = $('#canvas')[0];
 	var ctx = canvas.getContext('2d');
 	ctx.beginPath();
     ctx.moveTo(this.data.begin.x, this.data.begin.y);
     ctx.lineTo(this.data.end.x, this.data.end.y);
     ctx.stroke();
+
     /*
 	debugger
 	$('.line').each(function(){
@@ -52,8 +64,12 @@ Template.teste.events = {
 	'mouseup #canvas': function(e){
 		drawing = false;
 	},
-	'click .btn-default': function(e){
-		$('#canvas2').width = $('#canvas2').width(); 
+	'click .btn-default': function(){
+		Meteor.call('clear_canvas', function(err){
+            console.log('Success!');
+        });
+        globalStream.emit('clear', {});
+        //clearCanvas();
 	},
 	'mousedown #canvas2': function(e){
 		drawing = true;

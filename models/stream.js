@@ -1,0 +1,1 @@
+globalStream = new Meteor.Stream('global');
