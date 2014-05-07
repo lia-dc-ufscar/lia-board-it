@@ -71,17 +71,18 @@ Template.teste.events = {
         globalStream.emit('clear', {});
         //clearCanvas();
 	},
-	'mousedown #canvas2': function(e){
+	'touchstart #canvas2': function(e){
 		drawing = true;
 		lastX = e.pageX - e.target.offsetLeft;
 		lastY = e.pageY - e.target.offsetTop;
 	},
-	'mouseup #canvas2': function(e){
+	'touchmove #canvas2': function(e){
 		drawing = false;
 	},
-	'mousemove #canvas2': function(e){
+	'touchend #canvas2': function(e){
 		if(!drawing)
 			return;
+
 		var canvas = $('#canvas2')[0];
 		var ctx = canvas.getContext('2d');
         var x = e.pageX - e.target.offsetLeft;
