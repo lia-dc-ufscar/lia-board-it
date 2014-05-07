@@ -67,7 +67,11 @@ Template.new_post.content_set = function(){
 Template.new_post.has_author = function(){
       return !Session.equals("author", "Anonymous");
 },
-
+    /*
+    $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function() {
+      $('#colors_demo .tools').append("<a href='#colors_sketch' data-color='" + this + "' style='width: 10px; background: " + this + ";'></a> ");
+    });
+    */
 //image
 Template.new_image.events = {
     'change #imgInput': function(e){

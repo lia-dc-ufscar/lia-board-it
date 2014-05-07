@@ -71,15 +71,15 @@ Template.teste.events = {
         globalStream.emit('clear', {});
         //clearCanvas();
 	},
-	'touchstart #canvas2': function(e){
+	'mousedown #canvas2': function(e){
 		drawing = true;
 		lastX = e.pageX - e.target.offsetLeft;
 		lastY = e.pageY - e.target.offsetTop;
 	},
-	'touchmove #canvas2': function(e){
+	'mouseup #canvas2': function(e){
 		drawing = false;
 	},
-	'touchend #canvas2': function(e){
+	'mousemove #canvas2': function(e){
 		if(!drawing)
 			return;
 
@@ -93,6 +93,24 @@ Template.teste.events = {
 	    ctx.stroke();
         lastX = x;
         lastY = y;
+    },
+    'touchstart #canvas2': function(e){
+        touchEvent = e.originalEvent.changedTouches[0];
+        var canvas = $('#canvas2')[0];
+        var ctx = canvas.getContext('2d');        
+        lastX = touchEvent.pageX - e.target.offsetLeft;
+        lastY = touchEvent.pageY - e.target.offsetTop;
+        ctx.beginPath();
+        ctx.moveTo(lastX,lastY);
+    },
+    'touchmove #canvas2': function(e){
+        touchEvent = e.originalEvent.changedTouches[0];
+        var canvas = $('#canvas2')[0];
+        var ctx = canvas.getContext('2d');
+        var x = touchEvent.pageX - e.target.offsetLeft;
+        var y = touchEvent.pageY - e.target.offsetTop;
+        ctx.lineTo(x, y);
+        ctx.stroke();
     }
 }
 /*
