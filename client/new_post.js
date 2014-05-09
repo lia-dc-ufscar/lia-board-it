@@ -3,6 +3,9 @@ Template.new_post.rendered = function(){
   Session.set("bgColor", document.getElementById("bColor").value);
   Session.set("fontColor", document.getElementById("fColor").value);
   $('.resizable').resizable();
+  $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function() {
+    $('#bColor').append("<a href='"+this+" style='width: 10px; background: " + this + ";'></a> ");
+  });
 },
 Template.new_post.events = {
   'change #bColor': function(){
@@ -29,6 +32,8 @@ Template.new_post.events = {
     size = document.getElementById("size").value;
     posTop = parseInt(document.getElementById("posTop").value,10);
     posLeft = parseInt(document.getElementById("posLeft").value,10);
+    height = $('#preview').height();
+    width = $('#preview').width();
 
     if ( author == ""){
       author = "Anonymous";
@@ -97,9 +102,14 @@ Template.new_image.events = {
       if ( author == ""){
         author = "Anonymous";
       }
-      Images.insert({author: author, image: image, posTop: posTop, posLeft: posLeft , date: new Date});
-      console.log("image saved");
-      $('#home').click();
+      if(image != "undefined" && /^data\:image\/(png|jpg)\;/.test(image)){
+        Images.insert({author: author, image: image, posTop: posTop, posLeft: posLeft , date: new Date});
+        console.log("image saved");
+        $('#home').click();
+      }
+      else{
+
+      }
     },
     'click button.cancel': function(){
     $('#home').click();

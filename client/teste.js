@@ -21,6 +21,12 @@ Template.teste.rendered = function(){
     globalStream.on('clear', function(message){
         clearCanvas();
     });
+    /*
+    globalSream.on('drawstep', function(x,y)){
+        var canvas = $('#canvas2')[0];
+        var ctx = canvas.getContext('2d');
+    };
+    */
 }
 Template.step.rendered = function(e){
     var canvas = $('#canvas')[0];
@@ -95,16 +101,15 @@ Template.teste.events = {
         lastY = y;
     },
     'touchstart #canvas2': function(e){
-        touchEvent = e.originalEvent.changedTouches[0];
+        var touchEvent = e.originalEvent.changedTouches[0];
         var canvas = $('#canvas2')[0];
-        var ctx = canvas.getContext('2d');        
-        lastX = touchEvent.pageX - e.target.offsetLeft;
-        lastY = touchEvent.pageY - e.target.offsetTop;
+        var ctx = canvas.getContext('2d');
         ctx.beginPath();
-        ctx.moveTo(lastX,lastY);
+        ctx.moveTo(touchEvent.pageX - e.target.offsetLeft, touchEvent.pageY - e.target.offsetTop);
     },
     'touchmove #canvas2': function(e){
-        touchEvent = e.originalEvent.changedTouches[0];
+        var touchEvent = e.originalEvent.changedTouches[0];
+        e.preventDefault();
         var canvas = $('#canvas2')[0];
         var ctx = canvas.getContext('2d');
         var x = touchEvent.pageX - e.target.offsetLeft;

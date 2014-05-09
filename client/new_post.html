@@ -1,11 +1,11 @@
 <template name="new_post">
 	<br>
 	<div class="row">
-		<div class="col-sm-3 col-md-3 sidebar" style="background-color:#cdecee">
+		<div class="col-sm-4 col-md-4 sidebar" style="background-color:#cdecee">
 			<h1 class="page-header">Create Post</h1>
 			<label for="bColor">Background color:</label>
-			<select name="bColor" id="bColor" class ="form-control">
-	  			<option value="white">white</option>
+			<select name="bColor" id="bColor" class="form-control">
+				<option value="white">white</option>
 	  			<option value="red">red</option>
 	  			<option value="blue">blue</option>
 	  			<option value="green">green</option>
@@ -33,10 +33,9 @@
 
 			<label for="size">Size:</label>
 			<select name="size" id="size">
-	  			<option value="3x3">3x3</option>
-	  			<option value="3x5">3x5</option>
-	  			<option value="5x3">5x3</option>
-	  			<option value="5x5">5x5</option>
+	  			<option value="3x3">Post-it</option>
+	  			<option value="3x5">Large</option>
+	  			<option value="5x3">Long</option>
 			</select>
 			<br>
 			<label>Position on the board:</label><br>
@@ -55,10 +54,10 @@
 	  	<div class="col-sm-6 col-md-6 col-md-offset-3 main">
 			<h1 class="page-header">Preview</h1>
 			
-			<div class="col-md-3 col-md-offset-1 post resizable size-{{size_set}} {{bgColor_set}} font-{{fColor_set}}">
+			<div id="preview" class="col-md-3 col-md-offset-1 post resizable size-{{size_set}} {{bgColor_set}} font-{{fColor_set}}">
 				<h4>{{content_set}}</h4>
 				{{#if has_author}}
-				<br><p font-size="1em" align="right">{{author_set}}</p>
+				<br><p align="right">{{author_set}}</p>
 				{{/if}}
 			</div>
 		</div>
@@ -68,7 +67,7 @@
 <template name="new_image">
 	<br>
 	<div class="row">
-		<div class="col-sm-3 col-md-3 sidebar" style="background-color:#cdecee">
+		<div class="col-sm-4 col-md-4 sidebar" style="background-color:#cdecee">
 			<h2 class="page-header">Post New Image</h2>
 
 			<label for="author">Author</label><br>
