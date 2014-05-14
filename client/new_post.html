@@ -1,7 +1,7 @@
 <template name="new_post">
 	<br>
 	<div class="row">
-		<div class="col-sm-4 col-md-4 sidebar" style="background-color:#cdecee">
+		<div class="col-sm-3 col-md-3 sidebar" style="background-color:#cdecee">
 			<h1 class="page-header">Create Post</h1>
 			<label for="bColor">Background color:</label>
 			<select name="bColor" id="bColor" class="form-control">
@@ -30,13 +30,6 @@
 			<label for="content">Content</label><br>
 			<textarea name="content" class="form-control" rows="5"></textarea>
 			<br />
-
-			<label for="size">Size:</label>
-			<select name="size" id="size">
-	  			<option value="3x3">Post-it</option>
-	  			<option value="3x5">Large</option>
-	  			<option value="5x3">Long</option>
-			</select>
 			<br>
 			<label>Position on the board:</label><br>
 			<div class="form-group">
@@ -51,10 +44,10 @@
 	  			<button type="button" class="btn btn-danger cancel"> Cancel</button>
 	  		</div>
 	  	</div>
-	  	<div class="col-sm-6 col-md-6 col-md-offset-3 main">
+	  	<div class="col-sm-6 col-md-6 main">
 			<h1 class="page-header">Preview</h1>
 			
-			<div id="preview" class="col-md-3 col-md-offset-1 post resizable size-{{size_set}} {{bgColor_set}} font-{{fColor_set}}">
+			<div id="preview" class="col-md-3 post resizable {{bgColor_set}} font-{{fColor_set}}" style="height:200px; width:200px;">
 				<h4>{{content_set}}</h4>
 				{{#if has_author}}
 				<br><p align="right">{{author_set}}</p>
@@ -67,7 +60,7 @@
 <template name="new_image">
 	<br>
 	<div class="row">
-		<div class="col-sm-4 col-md-4 sidebar" style="background-color:#cdecee">
+		<div class="col-sm-3 col-md-3 sidebar" style="background-color:#cdecee">
 			<h2 class="page-header">Post New Image</h2>
 
 			<label for="author">Author</label><br>

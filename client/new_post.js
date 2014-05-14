@@ -1,8 +1,12 @@
 Template.new_post.rendered = function(){
-  Session.set("size", document.getElementById("size").value);
   Session.set("bgColor", document.getElementById("bColor").value);
   Session.set("fontColor", document.getElementById("fColor").value);
-  $('.resizable').resizable();
+  $('.resizable').resizable({
+    maxHeight: 1000,
+    maxWidth: 1000,
+    minHeight: 50,
+    minWidth: 50
+  });
   $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function() {
     $('#bColor').append("<a href='"+this+" style='width: 10px; background: " + this + ";'></a> ");
   });
@@ -13,9 +17,6 @@ Template.new_post.events = {
   },
   'change #fColor': function(){
     Session.set("fontColor", document.getElementById("fColor").value);
-  },
-  'change #size': function(){
-    Session.set("size", document.getElementById("size").value);
   },
   'change textarea[name=content]': function(){
     Session.set("content", $('textarea[name=content]').val());
@@ -28,9 +29,7 @@ Template.new_post.events = {
     author = $('textarea[name=author]').val();  
     content = $('textarea[name=content]').val();
     bgColor = document.getElementById("bColor").value;
-    fontColor = document.getElementById("fColor").value;
-    size = document.getElementById("size").value;
-    posTop = parseInt(document.getElementById("posTop").value,10);
+    fontColor = document.getElementById("fColor").value;    posTop = parseInt(document.getElementById("posTop").value,10);
     posLeft = parseInt(document.getElementById("posLeft").value,10);
     height = $('#preview').height();
     width = $('#preview').width();
@@ -39,7 +38,7 @@ Template.new_post.events = {
       author = "Anonymous";
     }
     if ( content != "" ){
-      Posts.insert ({author: author, content: content, bgColor: bgColor, fColor: fontColor, size: size, posTop: posTop, posLeft: posLeft,date: new Date});
+      Posts.insert ({author: author, content: content, bgColor: bgColor, fColor: fontColor, posTop: posTop, posLeft: posLeft, height: height, width: width, date: new Date});
       alert("Post created!");
       $('#home').click();
     }
@@ -50,10 +49,6 @@ Template.new_post.events = {
   'click button.cancel': function(){
     $('#home').click();
   }
-},
-
-Template.new_post.size_set = function(){
-      return Session.get("size");
 },
 
 Template.new_post.bgColor_set = function(){
@@ -102,7 +97,7 @@ Template.new_image.events = {
       if ( author == ""){
         author = "Anonymous";
       }
-      if(image != "undefined" && /^data\:image\/(png|jpg)\;/.test(image)){
+      if(/^data\:image\/(png|jpg)\;/.test(image)){
         Images.insert({author: author, image: image, posTop: posTop, posLeft: posLeft , date: new Date});
         console.log("image saved");
         $('#home').click();

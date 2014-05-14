@@ -1,6 +1,6 @@
 Meteor.startup(function(){
   if (Posts.find().count() === 0){
-    Posts.insert ({author: "Me", content: "First!", bgColor: "blue", fColor: "white", size: "3x3", posTop: 5, posLeft: 5, date: new Date});
+    Posts.insert ({author: "Me", content: "First!", bgColor: "blue", fColor: "white", posTop: 100, posLeft: 100, height: "200px", width: "200px", date: new Date});
   }
 });
 Meteor.methods({

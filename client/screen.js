@@ -7,9 +7,18 @@ Template.screen.images = function(){
 }
 
 Template.post.rendered = function(){
-	console.log("rendered");
 	self = '#'+this.data._id;
-	$(self).resizable();
+	$(self).resizable({
+		maxHeight: 1000,
+    	maxWidth: 1000,
+    	minHeight: 50,
+    	minWidth: 50,
+		stop:function(){
+			var height = this.style.height;
+			var width = this.style.width;
+			Posts.update(this.id, {$set: {height: height, width: width}});
+		}
+	});
 	$(self).draggable({
 		start: function( event, ui ) {
 			console.log("picked");
@@ -17,7 +26,7 @@ Template.post.rendered = function(){
 		stop: function( event, ui ) {
 			var top = parseInt(this.style.top, 10);
 			var left = parseInt(this.style.left, 10);
-			console.log("Post "+ this.id + " dropped at: " + top +" top, "+ left + " left");
+			//console.log("Post "+ this.id + " dropped at: " + top +" top, "+ left + " left");
 			Posts.update(this.id, {$set: {posTop: top, posLeft: left}});
 		}
 	});
