@@ -1,5 +1,6 @@
 <template name="post_list">
 	<div class="jumbotron">
+	<h3>Posts:</h3>
 	{{#each posts}}
 		<ul class="list-group">
 			{{> post_info}}
@@ -7,12 +8,27 @@
 	{{else}}
 		No posts yet.
 	{{/each}}
+	<h3>Images:</h3>
+	{{#each images}}
+		<ul class="list-group">
+			{{> image_info}}
+		</ul>
+	{{else}}
+		No images yet.
+	{{/each}}
 </div>
 </template>
 
 <template name="post_info">
 	<li class="list-group-item {{bgColor}} font-{{fColor}}">
 		{{content}}, by {{author}} at {{date}}
+		<button class="btn btn-danger"> Delete </button>
+	</li>
+</template>
+
+<template name="image_info">
+	<li class="list-group-item">
+		<img src="{{image}}" style="height: 50px; width: 50px;"/>, by {{author}} at {{date}}
 		<button class="btn btn-danger"> Delete </button>
 	</li>
 </template>

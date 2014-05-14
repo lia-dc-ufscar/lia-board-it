@@ -1,0 +1,31 @@
+<template name="new_image">
+	<br>
+	<div class="row">
+		<div class="col-sm-3 col-md-3 sidebar" style="background-color:#cdecee">
+			<h2 class="page-header">Post New Image</h2>
+
+			<label for="author">Author</label><br>
+			<textarea name="author" placeholder="Ex: Your Name" class="form-control" rows="1"></textarea>
+			<br>
+			<label for="imgInput">Select the image file:</label><br>
+			<input type="file" id="imgInput" class="form-group" />
+			<br>
+			<label>Position on the board:</label><br>
+			<div class="form-group">
+				<label for="posTop">Top:</label>
+				<input type="number" id="posTop" name="posTop" min="1" max="500" placeholder="1">
+				<label for="posLeft">Left:</label>
+				<input type="number" id="posLeft" name="posLeft" min="1" max="500" placeholder="1">
+			</div>
+			<br>
+			<div class="form-group">
+	  			<button type="button" class="btn btn-success submit"> New Post!</button>
+	  			<button type="button" class="btn btn-danger cancel"> Cancel</button>
+	  		</div>
+	  	</div>
+	  	<div class="col-sm-6 col-md-6 main">
+			<h1 class="page-header">Preview</h1>
+			<img id="preview" alt="Image preview" />
+		</div>
+	</div>
+</template>

@@ -14,8 +14,8 @@ Template.post.rendered = function(){
     	minHeight: 50,
     	minWidth: 50,
 		stop:function(){
-			var height = this.style.height;
-			var width = this.style.width;
+			var height = parseInt(this.style.height,10);
+			var width = parseInt(this.style.width,10);
 			Posts.update(this.id, {$set: {height: height, width: width}});
 		}
 	});

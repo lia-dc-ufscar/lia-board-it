@@ -1,8 +1,8 @@
-<template name="new_post">
+<template name="new_hand_post">
 	<br>
 	<div class="row">
 		<div class="col-sm-3 col-md-3 sidebar" style="background-color:#cdecee">
-			<h1 class="page-header">Create Post</h1>
+			<h2 class="page-header">Post New Hand Post</h2>
 			<label for="bColor">Background color:</label>
 			<select name="bColor" id="bColor" class="form-control">
 				<option value="white">white</option>
@@ -13,8 +13,8 @@
 	  			<option value="black">black</option>
 			</select>
 
-			<label for="fColor">Font color:</label>
-			<select name="fColor" id="fColor" class="form-control">
+			<label for="inkColor">Ink color:</label>
+			<select name="inkColor" id="inkColor" class="form-control">
 	  			<option value="black">black</option>
 	  			<option value="red">red</option>
 	  			<option value="blue">blue</option>
@@ -23,13 +23,8 @@
 	  			<option value="white">white</option>
 			</select>
 			<br>
-
 			<label for="author">Author</label><br>
 			<textarea name="author" placeholder="Ex: Your Name" class="form-control" rows="1"></textarea>
-			<br>
-			<label for="content">Content</label><br>
-			<textarea name="content" class="form-control" rows="5"></textarea>
-			<br />
 			<br>
 			<label>Position on the board:</label><br>
 			<div class="form-group">
@@ -44,15 +39,11 @@
 	  			<button type="button" class="btn btn-danger cancel"> Cancel</button>
 	  		</div>
 	  	</div>
-	  	<div class="col-sm-6 col-md-6 main">
-			<h1 class="page-header">Preview</h1>
-			
-			<div id="preview" class="col-md-3 post resizable {{bgColor_set}} font-{{fColor_set}}" style="height:200px; width:200px;">
-				<h4>{{content_set}}</h4>
-				{{#if has_author}}
-					<br><p align="right">{{author_set}}</p>
-				{{/if}}
-			</div>
+	  	<div class="main">
+			<h1 class="page-header col-md-offset-1">Preview</h1>
+			<center>
+			<canvas id="canvas" width="400" height="400" style="border: 1px double black" ></canvas>
+		</center>
 		</div>
 	</div>
 </template>

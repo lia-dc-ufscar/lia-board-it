@@ -14,14 +14,22 @@
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand"> The Board</a>
+				<a class="navbar-brand"> Board-it</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a id="home" data-toggle="tab">Board</a></li>
+					<li class="active"><a id="home" data-toggle="tab">Your Board</a></li>
+					<li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown">New <b class="caret"></b></a>
+				        <ul class="dropdown-menu">
+							<li><a id="new_post" data-toggle="tab">New Post</a></li>
+							<li class="divider"></li>
+							<li><a id="newImg" data-toggle="tab">New Image</a></li>
+				            <li class="divider"></li>
+				            <li><a id="handPost" data-toggle="tab">New Handpost </a></li>
+				        </ul>
+					</li>
 					<li><a id="list" data-toggle="tab">List of Posts</a></li>
-					<li><a id="new" data-toggle="tab">New</a></li>
-					<li><a id="newImg" data-toggle="tab">New Image</a></li>
 					<li><a id="teste" data-toggle="tab">Teste </a></li>
 				</ul>
 			</div>
@@ -43,6 +51,9 @@
 		{{/if}}
 		{{#if is_teste}}
 			{{> teste}}
+		{{/if}}
+		{{#if is_new_hand_post}}
+			{{> new_hand_post}}
 		{{/if}}
 	</div>
 </template>
