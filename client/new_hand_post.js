@@ -4,6 +4,14 @@ var drawing = false;
 var lastX = 0;
 var lastY = 0;
 
+Template.new_hand_post.rendered = function(){
+        var canvas = $('#canvas')[0];
+        var ctx = canvas.getContext('2d');
+        ctx.lineWidth = document.getElementById("stroke").value;
+        ctx.lineJoin = "round";
+        ctx.lineCap = "round";
+}
+
 Template.new_hand_post.events = {
 	'change #bColor': function(){
         backgroundColor= document.getElementById("bColor").value;
@@ -17,7 +25,7 @@ Template.new_hand_post.events = {
         ctx = canvas.getContext('2d');
 		ctx.fillStyle = backgroundColor;
         console.log('color is now ' + ctx.fillStyle);
-		ctx.rect(0,0, h,w);
+        ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.fill();
  	 },
      'change #stroke': function(){
@@ -28,8 +36,6 @@ Template.new_hand_post.events = {
             stroke = 1;
         if (stroke > 20)
             stroke = 20;
-        ctx.lineJoin = "round";
-        ctx.lineCap = "round";
         ctx.lineWidth = stroke;
         console.log(ctx.lineWidth);
      },
