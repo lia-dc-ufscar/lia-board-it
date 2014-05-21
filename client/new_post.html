@@ -24,20 +24,8 @@
 			</select>
 			<br>
 
-			<label for="author">Author</label><br>
-			<textarea name="author" placeholder="Ex: Your Name" class="form-control" rows="1"></textarea>
-			<br>
 			<label for="content">Content</label><br>
 			<textarea name="content" class="form-control" rows="5"></textarea>
-			<br />
-			<br>
-			<label>Position on the board:</label><br>
-			<div class="form-group">
-				<label for="posTop">Top:</label>
-				<input type="number" id="posTop" name="posTop" min="1" max="500" placeholder="1">
-				<label for="posLeft">Left:</label>
-				<input type="number" id="posLeft" name="posLeft" min="1" max="500" placeholder="1">
-			</div>
 			<br>
 			<div class="form-group">
 	  			<button type="button" class="btn btn-success submit"> New Post!</button>
@@ -49,9 +37,6 @@
 			
 			<div id="preview" class="col-md-3 post resizable {{bgColor_set}} font-{{fColor_set}}" style="height:200px; width:200px;">
 				<h4>{{content_set}}</h4>
-				{{#if has_author}}
-					<br><p align="right">{{author_set}}</p>
-				{{/if}}
 			</div>
 		</div>
 	</div>

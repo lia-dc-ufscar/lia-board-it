@@ -5,6 +5,7 @@
 			<h2 class="page-header">Post New Hand Post</h2>
 			<label for="bColor">Background color:</label>
 			<select name="bColor" id="bColor" class="form-control">
+				<option value="transparent">transparent</option>
 				<option value="white">white</option>
 	  			<option value="red">red</option>
 	  			<option value="blue">blue</option>
@@ -23,16 +24,9 @@
 	  			<option value="white">white</option>
 			</select>
 			<br>
-			<label for="author">Author</label><br>
-			<textarea name="author" placeholder="Ex: Your Name" class="form-control" rows="1"></textarea>
-			<br>
-			<label>Position on the board:</label><br>
-			<div class="form-group">
-				<label for="posTop">Top:</label>
-				<input type="number" id="posTop" name="posTop" min="1" max="500" placeholder="1">
-				<label for="posLeft">Left:</label>
-				<input type="number" id="posLeft" name="posLeft" min="1" max="500" placeholder="1">
-			</div>
+
+			<label for="stroke">Stroke width:</label>
+			<input type="number" id="stroke" name="stroke" min="1" max="20" value="5" class="form-control"/>
 			<br>
 			<div class="form-group">
 	  			<button type="button" class="btn btn-success submit"> New Post!</button>
@@ -42,8 +36,10 @@
 	  	<div class="main">
 			<h1 class="page-header col-md-offset-1">Preview</h1>
 			<center>
-			<canvas id="canvas" width="400" height="400" style="border: 1px double black" ></canvas>
-		</center>
+				<canvas id="canvas" width="400" height="400" style="border: 1px double black" ></canvas>
+				<br>
+				<button class="btn btn-default clear"> Clear </button>
+			</center>
 		</div>
 	</div>
 </template>

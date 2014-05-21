@@ -15,12 +15,12 @@ Template.new_image.events = {
     },
     'click .submit': function(){
       image = $('#preview').attr('src');
-      posTop = parseInt(document.getElementById("posTop").value,10);
-      posLeft = parseInt(document.getElementById("posLeft").value,10);
+      posTop = 50;//parseInt(document.getElementById("posTop").value,10);
+      posLeft = 50;//parseInt(document.getElementById("posLeft").value,10);
       author = $('textarea[name=author]').val();  
       height = $('#preview').height();
       width = $('#preview').width();      
-
+      /*
       if ( author == ""){
         author = "Anonymous";
       }
@@ -28,8 +28,9 @@ Template.new_image.events = {
         posTop = 50;
         posLeft = 50;
       }
+      */
       if(/^data\:image\/(png|jpg|jpeg)\;/.test(image)){
-        Images.insert({author: author, image: image, posTop: posTop, posLeft: posLeft , date: new Date});
+        Images.insert({/*author: author, */ image: image, posTop: posTop, posLeft: posLeft , date: new Date});
         console.log("image saved");
         alert('Post created!');
         document.getElementById('home').click()

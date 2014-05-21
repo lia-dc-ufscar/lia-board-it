@@ -22,9 +22,11 @@ Template.new_post.author_set = function(){
 Template.new_post.content_set = function(){
       return Session.get("content");
 },
+/*
 Template.new_post.has_author = function(){
       return !Session.equals("author", "Anonymous");
 },
+*/
 
 Template.new_post.events = {
   'change #bColor': function(){
@@ -35,21 +37,23 @@ Template.new_post.events = {
   },
   'change textarea[name=content]': function(){
     Session.set("content", $('textarea[name=content]').val());
-  }, 
+  },
+  /* 
   'change textarea[name=author]': function(){
     $('textarea[name=author]').val() == "" ? Session.set("author", "Anonymous") : Session.set("author", $('textarea[name=author]').val())
   },
+  */
 
   'click button.submit': function(){
-    author = $('textarea[name=author]').val();  
+    //author = $('textarea[name=author]').val();  
     content = $('textarea[name=content]').val();
     bgColor = document.getElementById("bColor").value;
     fontColor = document.getElementById("fColor").value;
-    posTop = parseInt(document.getElementById("posTop").value,10);
-    posLeft = parseInt(document.getElementById("posLeft").value,10);
+    posTop = 50; //parseInt(document.getElementById("posTop").value,10);
+    posLeft = 50; //parseInt(document.getElementById("posLeft").value,10);
     height = $('#preview').height();
     width = $('#preview').width();
-
+    /*
     if ( author == ""){
       author = "Anonymous";
     };
@@ -57,8 +61,9 @@ Template.new_post.events = {
       posTop = 50;
       posLeft = 50;
     }
+    */
     if ( content != "" ){
-      Posts.insert ({author: author, content: content, bgColor: bgColor, fColor: fontColor, posTop: posTop, posLeft: posLeft, height: height, width: width, date: new Date});
+      Posts.insert ({/*author: author,*/ content: content, bgColor: bgColor, fColor: fontColor, posTop: posTop, posLeft: posLeft, height: height, width: width, date: new Date});
       alert("Post created!");
       document.getElementById('home').click()
     }
