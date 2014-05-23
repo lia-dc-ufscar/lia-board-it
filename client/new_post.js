@@ -7,6 +7,7 @@ Template.new_post.rendered = function(){
     minHeight: 50,
     minWidth: 50
   });
+  Session.set("content", "Type a message!");
 },
 
 Template.new_post.bgColor_set = function(){
@@ -20,7 +21,7 @@ Template.new_post.author_set = function(){
       return Session.get("author");
 },
 Template.new_post.content_set = function(){
-      return Session.get("content").replace('\n', '<br>');
+      return (typeof(Session.get("content")) != 'undefined')? Session.get("content").replace('\n', '<br>') : false;
 },
 /*
 Template.new_post.has_author = function(){

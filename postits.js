@@ -22,11 +22,6 @@ if (Meteor.isClient) {
     return Session.equals("current_page", "teste");
   },
 
-$('*').on('touch', function(e){
-  $(e.target).click();
-  return true;
-});
-
   Template.page.events = {
     'click a#home': function(){
       Session.set("current_page", "home");
