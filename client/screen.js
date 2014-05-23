@@ -46,8 +46,20 @@ Template.post_image.rendered = function(){
 			Images.update(this.id, {$set: {posTop: top, posLeft: left}});
 		}
 	});
+	$(self).resizable({
+		maxHeight: 1000,
+    	maxWidth: 1000,
+    	minHeight: 50,
+    	minWidth: 50,
+		stop:function(){
+			var height = parseInt(this.style.height,10);
+			var width = parseInt(this.style.width,10);
+			Images.update(this.id, {$set: {height: height, width: width}});
+			console.log('size: ' + height + 'px  x ' + width + 'px');
+		}
+	});
 }
 
-Template.post.author = function(){
-	return (this.author == "Anonymous") ? "" : this.author;
+Template.post.content = function(){
+	return this.content.replace('\n', '<br>');
 }

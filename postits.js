@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   Meteor.startup(function(){
-    Session.set("current_page","home");
+    Session.set("current_page","new_img");
   }),
 
   Template.page.is_list = function(){
@@ -21,6 +21,11 @@ if (Meteor.isClient) {
   Template.page.is_teste = function(){
     return Session.equals("current_page", "teste");
   },
+
+$('*').on('touch', function(e){
+  $(e.target).click();
+  return true;
+});
 
   Template.page.events = {
     'click a#home': function(){

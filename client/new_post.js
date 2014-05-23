@@ -20,7 +20,7 @@ Template.new_post.author_set = function(){
       return Session.get("author");
 },
 Template.new_post.content_set = function(){
-      return Session.get("content");
+      return Session.get("content").replace('\n', '<br>');
 },
 /*
 Template.new_post.has_author = function(){

@@ -91,6 +91,8 @@ Template.new_hand_post.events = {
     	posTop = 50; //parseInt(document.getElementById("posTop").value,10);
     	posLeft = 50; //parseInt(document.getElementById("posLeft").value,10);
     	//author = $('textarea[name=author]').val();
+        height = $('#canvas').height();
+        width = $('#canvas').width();      
 	    /*
         if ( author == ""){
 	        author = "Anonymous";
@@ -100,7 +102,7 @@ Template.new_hand_post.events = {
 	        posLeft = 50;
 	    }
         */
-        Images.insert({/*author: author, */image: image, posTop: posTop, posLeft: posLeft , date: new Date});
+        Images.insert({/*author: author, */image: image, posTop: posTop, posLeft: posLeft , height: height, width: width, date: new Date});
         console.log("image saved");
         alert('Post created!');
         document.getElementById('home').click()
