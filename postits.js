@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   Meteor.startup(function(){
-    Session.set("current_page","new_post");
+    Session.set("current_page","home");
   }),
 
   Template.page.is_list = function(){
@@ -11,12 +11,6 @@ if (Meteor.isClient) {
   },
   Template.page.is_home = function(){
     return Session.equals("current_page", "home");
-  },
-  Template.page.is_new_image = function(){
-    return Session.equals("current_page", "new_img");
-  },
-  Template.page.is_new_hand_post = function(){
-    return Session.equals("current_page", "new_hand_post");
   },
   Template.page.is_teste = function(){
     return Session.equals("current_page", "teste");
@@ -35,14 +29,6 @@ if (Meteor.isClient) {
     'click a#new_post': function(){
 
       Session.set("current_page", "new_post");
-      console.log(Session.get("current_page"));
-    },
-    'click a#newImg': function(){
-      Session.set("current_page", "new_img");
-      console.log(Session.get("current_page"));
-    },
-    'click a#handPost': function(){
-      Session.set("current_page", "new_hand_post");
       console.log(Session.get("current_page"));
     },
     'click a#teste': function(){

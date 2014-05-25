@@ -1,0 +1,27 @@
+<template name="its_list">
+	<div class="jumbotron">
+	<h3>Its:</h3>
+	{{#each its}}
+		<ul class="list-group">
+			{{> it_info}}
+		</ul>
+	{{else}}
+		No images yet.
+	{{/each}}
+	</div>
+</template>
+
+<template name="it_info">
+	{{#if isText}}
+	<li class="list-group-item {{bgColor}} font-{{fontColor}}">
+		{{content}}, at {{date}}
+		<button class="btn btn-danger"> Delete </button>
+	</li>
+	{{/if}}
+	{{#if isImage}}
+	<li class="list-group-item">
+		<img src="{{content}}" style="height: 50px; width: 50px;"/>, at {{date}}
+		<button class="btn btn-danger"> Delete </button>
+	</li>
+	{{/if}}
+</template>

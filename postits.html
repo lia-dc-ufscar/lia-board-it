@@ -29,22 +29,16 @@
 	<div class="container-fluid">
 		<br>
 		{{#if is_home}}
-			{{> screen}}
+			{{> board}}
 		{{/if}}
 		{{#if is_list}}
-			{{> post_list}}
+			{{> its_list}}
 		{{/if}}
 		{{#if is_new}}
 			{{> new_it}}
 		{{/if}}
-		{{#if is_new_image}}
-			{{> new_image}}
-		{{/if}}
 		{{#if is_teste}}
 			{{> teste}}
-		{{/if}}
-		{{#if is_new_hand_post}}
-			{{> new_hand_post}}
 		{{/if}}
 	</div>
 </template>

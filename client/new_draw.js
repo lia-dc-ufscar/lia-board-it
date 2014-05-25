@@ -4,17 +4,17 @@ var drawing = false;
 var lastX = 0;
 var lastY = 0;
 
-Template.new_hand_post.rendered = function(){
-        var canvas = $('#canvas')[0];
-        var ctx = canvas.getContext('2d');
-        ctx.lineWidth = document.getElementById("stroke").value;
-        ctx.lineJoin = "round";
-        ctx.lineCap = "round";
+Template.drawPreview.rendered = function(){
+    var canvas = $('#canvas')[0];
+    var ctx = canvas.getContext('2d');
+    ctx.lineWidth = document.getElementById("stroke").value;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
 }
 
-Template.new_hand_post.events = {
-	'change #bColor': function(){
-        backgroundColor= document.getElementById("bColor").value;
+Template.drawEditor.events = {
+	'change #bgColor': function(){
+        backgroundColor= document.getElementById("bgColor").value;
         if(backgroundColor == "transparent"){
             canvas = $('#canvas')[0];
             ctx = canvas.getContext('2d');
@@ -28,7 +28,7 @@ Template.new_hand_post.events = {
         ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.fill();
  	 },
-     'change #stroke': function(){
+    'change #stroke': function(){
         var canvas = $('#canvas')[0];
         var ctx = canvas.getContext('2d');
         stroke = document.getElementById("stroke").value;
@@ -38,12 +38,9 @@ Template.new_hand_post.events = {
             stroke = 20;
         ctx.lineWidth = stroke;
         console.log(ctx.lineWidth);
-     },
-    'click .clear': function(){
-        canvas = $('#canvas')[0];
-        ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    },
+    }
+}
+Template.drawPreview.events = {
 	'mousedown #canvas': function(e){
 		drawing = true;
 		lastX = e.pageX - e.target.offsetLeft;
@@ -86,25 +83,9 @@ Template.new_hand_post.events = {
         ctx.lineTo(x, y);
         ctx.stroke();
     },
-    'click button.submit': function(){
-    	image = document.getElementById('canvas').toDataURL('image/png');
-    	posTop = 50; //parseInt(document.getElementById("posTop").value,10);
-    	posLeft = 50; //parseInt(document.getElementById("posLeft").value,10);
-    	//author = $('textarea[name=author]').val();
-        height = $('#canvas').height();
-        width = $('#canvas').width();      
-	    /*
-        if ( author == ""){
-	        author = "Anonymous";
-	    }
-	    if(isNaN(posTop)|| isNaN(posLeft)){
-	        posTop = 50;
-	        posLeft = 50;
-	    }
-        */
-        Images.insert({/*author: author, */image: image, posTop: posTop, posLeft: posLeft , height: height, width: width, date: new Date});
-        console.log("image saved");
-        alert('Post created!');
-        document.getElementById('home').click()
-    }
+    'click .clear': function(){
+        canvas = $('#canvas')[0];
+        ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    },
 }

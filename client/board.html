@@ -1,0 +1,20 @@
+<template name="board">
+	{{#each its}}
+		{{>it}}
+	{{else}}
+		No posts yet.
+	{{/each}}
+</template>
+
+<template name="it">
+	{{#if isText}}
+		<div id="{{_id}}" class= "post {{bgColor}}" style="color: {{fontColor}}; top:{{posTop}}px; left:{{posLeft}}px; position:absolute; height:{{height}}px; width:{{width}}px; padding: 10px">
+			<h4>{{{content}}}</h4>
+		</div>
+	{{/if}}
+	{{#if isImage}}
+		<div id ="{{_id}}" class="post" style="top:{{posTop}}px;left:{{posLeft}}px; position:absolute; height:{{height}}px; width:{{width}}px;">
+			<img id ="{{_id}}" src="{{content}}" style="height:100%; width: 100%"/>
+		</div>
+	{{/if}}
+</template>
