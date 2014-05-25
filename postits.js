@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   Meteor.startup(function(){
-    Session.set("current_page","home");
+    Session.set("current_page","new_post");
   }),
 
   Template.page.is_list = function(){

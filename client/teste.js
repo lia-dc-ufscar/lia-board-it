@@ -77,41 +77,19 @@ Template.teste.events = {
         globalStream.emit('clear', {});
         //clearCanvas();
 	},
-	'mousedown #canvas2': function(e){
-		drawing = true;
-		lastX = e.pageX - e.target.offsetLeft;
-		lastY = e.pageY - e.target.offsetTop;
-	},
-	'mouseup #canvas2': function(e){
-		drawing = false;
-	},
-	'mousemove #canvas2': function(e){
-		if(!drawing)
-			return;
-
-		var canvas = $('#canvas2')[0];
-		var ctx = canvas.getContext('2d');
-        var x = e.pageX - e.target.offsetLeft;
-        var y = e.pageY - e.target.offsetTop;
-		ctx.beginPath();
-	    ctx.moveTo(lastX, lastY);
-	    ctx.lineTo(x, y);
-	    ctx.stroke();
-        lastX = x;
-        lastY = y;
-    },
-    'touchstart #canvas2': function(e){
+    'touchstart #canvas': function(e){
         var touchEvent = e.originalEvent.changedTouches[0];
-        var canvas = $('#canvas2')[0];
+        var canvas = $('#canvas')[0];
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
         ctx.moveTo(touchEvent.pageX - e.target.offsetLeft, touchEvent.pageY - e.target.offsetTop);
     },
-    'touchmove #canvas2': function(e){
+    'touchmove #canvas': function(e){
         var touchEvent = e.originalEvent.changedTouches[0];
         e.preventDefault();
-        var canvas = $('#canvas2')[0];
+        var canvas = $('#canvas')[0];
         var ctx = canvas.getContext('2d');
+        Drawsteps.insert({begin: {x: lastX, y: lastY}, end: {x: x, y:y}, date: new Date});
         var x = touchEvent.pageX - e.target.offsetLeft;
         var y = touchEvent.pageY - e.target.offsetTop;
         ctx.lineTo(x, y);

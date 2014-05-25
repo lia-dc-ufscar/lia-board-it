@@ -6,6 +6,7 @@ body{
 	font-size-adjust: .58;
 	word-wrap: break-word;
 	overflow: hidden;
+	cursor: move;
 }
 .red{
 	background-color: red;
