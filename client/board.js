@@ -39,3 +39,23 @@ Template.it.rendered = function(){
 		}
 	});
 }
+
+Template.board.events = {
+	'click .post': function(e){
+		console.log(e.target.id);
+		if(e.which == 1){
+			console.log('left clicked');
+			Its.update(e.target.id, {$inc: {zIndex: 1}});
+		}
+	},
+	'mousedown .post': function(e){
+		if(e.which == 3){
+			console.log('right clicked');
+			Its.update(e.target.id, {$inc: {zIndex: -1}});			
+		}		
+	}
+}
+
+document.oncontextmenu = function(){
+	return false;
+}

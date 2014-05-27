@@ -1,11 +1,30 @@
 Template.new_it.rendered = function(){
-  $('.resizable').resizable({
+  $('#postpreview').resizable({
     maxHeight: 1000,
     maxWidth: 1000,
     minHeight: 50,
     minWidth: 50
   });
   Session.set('post_type', 'text');
+}
+
+Template.imagePreview.rendered = function(){
+  $('#postpreview').resizable({
+    maxHeight: 1000,
+    maxWidth: 1000,
+    minHeight: 50,
+    minWidth: 50
+  });
+  height > width ? (height > 500 ? document.getElementById("postpreview").style.height = '500px' : console.log("false")) : (width > 500 ? document.getElementById("postpreview").style.width = '500px' : console.log("false"));
+}
+
+Template.textPreview.rendered = function(){
+  $('#postpreview').resizable({
+    maxHeight: 1000,
+    maxWidth: 1000,
+    minHeight: 50,
+    minWidth: 50
+  });
 }
 
 Template.new_it.isText = function(){
@@ -91,14 +110,11 @@ Template.new_it.events = {
 	        $('#postpreview').attr('src', e.target.result);
 	      height = $('#postpreview').height();
 	      width  = $('#postpreview').width();
-	      if(height > 500){
-	        document.getElementById("postpreview").style.height = '500px';
-	        return true;
-	      }
-	      else if(width > 500){
-	        document.getElementById("postpreview").style.width = '500px';
-	        return true;
-	      };
+	      height > width ? (height > 500 ? document.getElementById("postpreview").style.height = '500px' : console.log("false")) : (width > 500 ? document.getElementById("postpreview").style.width = '500px' : console.log("false"));
+	      height = $('#postpreview').height();
+	      width  = $('#postpreview').width();
+	      document.getElementsByClassName("resizable").style.height = height;
+	      document.getElementsByClassName("resizable").style.height	= width;    
 	  }
 	  
 	  reader.readAsDataURL(input.files[0]);

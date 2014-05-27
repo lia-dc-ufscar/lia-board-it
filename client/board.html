@@ -4,17 +4,38 @@
 	{{else}}
 		No posts yet.
 	{{/each}}
+	<div class="dropdown">
+	  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+	    Dropdown
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+	    <li role="presentation" class="divider"></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+	  </ul>
+	</div>
 </template>
 
 <template name="it">
 	{{#if isText}}
-		<div id="{{_id}}" class= "post {{bgColor}}" style="color: {{fontColor}}; top:{{posTop}}px; left:{{posLeft}}px; position:absolute; height:{{height}}px; width:{{width}}px; padding: 10px">
-			<h4>{{{content}}}</h4>
-		</div>
+		{{>it_text}}
 	{{/if}}
 	{{#if isImage}}
-		<div id ="{{_id}}" class="post" style="top:{{posTop}}px;left:{{posLeft}}px; position:absolute; height:{{height}}px; width:{{width}}px;">
-			<img id ="{{_id}}" src="{{content}}" style="height:100%; width: 100%"/>
-		</div>
+		{{>it_image}}
 	{{/if}}
+</template>
+
+<template name="it_text">
+	<div id="{{_id}}" class= "post {{bgColor}}" style="color: {{fontColor}}; top:{{posTop}}px; left:{{posLeft}}px; position:absolute; height:{{height}}px; width:{{width}}px; padding: 10px; z-index: {{zIndex}}">
+		<h4>{{{content}}}</h4>
+	</div>
+</template>
+
+<template name="it_image">
+	<div id ="{{_id}}" class="post" style="top:{{posTop}}px;left:{{posLeft}}px; position:absolute; height:{{height}}px; width:{{width}}px; z-index: {{zIndex}};">
+		<img id ="{{_id}}" src="{{content}}" style="height:100%; width: 100%;"/>
+	</div>
 </template>

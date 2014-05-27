@@ -1,5 +1,5 @@
 Template.its_list.its = function(){
-	return Its.find({});
+	return Its.find({}, {sort: {date: -1}});
 }
 Template.it_info.isText = function(){
 	return this.type == 'text';
