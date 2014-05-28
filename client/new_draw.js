@@ -4,6 +4,8 @@ var drawing = false;
 var lastX = 0;
 var lastY = 0;
 var resizing = false;
+var originalHeight = 400;
+var originalWidth = 400;
 
 Template.drawPreview.rendered = function(){
     var canvas = $('#canvas')[0];
@@ -57,10 +59,17 @@ Template.drawPreview.events = {
 		var canvas = $('#canvas')[0];
 		var ctx = canvas.getContext('2d');
         var x = e.pageX - e.target.offsetLeft;
+        console.log(x);
         var y = e.pageY - e.target.offsetTop;
+        var currentWidth = $('#canvas').width();
+        var currentHeight = $('#canvas').height();
+        var relX = (x/currentWidth)*originalWidth;
+        var relLastX = (lastX/currentWidth)*originalWidth;
+        var relY = (y/currentHeight)*originalHeight;
+        var relLastY = (lastY/currentHeight)*originalHeight;
 		ctx.beginPath();
-	    ctx.moveTo(lastX, lastY);
-	    ctx.lineTo(x, y);
+	    ctx.moveTo(relLastX, relLastY);
+	    ctx.lineTo(relX, relY);
 	    ctx.strokeStyle = document.getElementById("inkColor").value;
 	    ctx.stroke();
         lastX = x;
@@ -68,11 +77,8 @@ Template.drawPreview.events = {
     },
     'touchstart #canvas': function(e){
         var touchEvent = e.originalEvent.changedTouches[0];
-        var canvas = $('#canvas')[0];
-        var ctx = canvas.getContext('2d');
-        ctx.beginPath();
-        ctx.strokeStyle = document.getElementById("inkColor").value;
-        ctx.moveTo(touchEvent.pageX - e.target.offsetLeft, touchEvent.pageY - e.target.offsetTop);
+        lastX = touchEvent.pageX - e.target.offsetLeft;
+        lastY = touchEvent.pageY - e.target.offsetTop;
     },
     'touchmove #canvas': function(e){
         var touchEvent = e.originalEvent.changedTouches[0];
@@ -81,8 +87,19 @@ Template.drawPreview.events = {
         var ctx = canvas.getContext('2d');
         var x = touchEvent.pageX - e.target.offsetLeft;
         var y = touchEvent.pageY - e.target.offsetTop;
-        ctx.lineTo(x, y);
+        var currentWidth = $('#canvas').width();
+        var currentHeight = $('#canvas').height();
+        var relX = (x/currentWidth)*originalWidth;
+        var relLastX = (lastX/currentWidth)*originalWidth;
+        var relY = (y/currentHeight)*originalHeight;
+        var relLastY = (lastY/currentHeight)*originalHeight;
+        ctx.beginPath();
+        ctx.moveTo(relLastX, relLastY);
+        ctx.lineTo(relX, relY);
+        ctx.strokeStyle = document.getElementById("inkColor").value;
         ctx.stroke();
+        lastX = x;
+        lastY = y;
     },
     'click .clear': function(){
         canvas = $('#canvas')[0];
