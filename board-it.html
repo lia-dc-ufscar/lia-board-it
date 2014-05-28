@@ -14,11 +14,11 @@
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand"> Board-it</a>
+				<a class="navbar-brand" id="home" data-toggle="tab"> Board-it</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a id="home" data-toggle="tab">Your Board</a></li>
+					<li><a id="board" data-toggle="tab">Your Board</a></li>
 					<li><a id="new_post" data-toggle="tab">New Post</a></li>
 					<li><a id="list" data-toggle="tab">List of Posts</a></li>
 					<li><a id="teste" data-toggle="tab">Teste </a></li>
@@ -28,8 +28,11 @@
 	</div>
 	<div class="container-fluid">
 		<br>
-		{{#if is_home}}
+		{{#if is_board}}
 			{{> board}}
+		{{/if}}
+		{{#if is_home}}
+			{{> home}}
 		{{/if}}
 		{{#if is_list}}
 			{{> its_list}}

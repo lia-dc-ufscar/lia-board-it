@@ -74,7 +74,7 @@ Template.new_it.events = {
 	    if (newPost.content != "" ){
 	      Its.insert (newPost);
 	      alert("Post created!");
-	      document.getElementById('home').click()
+	      document.getElementById('board').click()
 	    }
 	    else{
 	      alert("Digite o conteúdo do post");
@@ -85,19 +85,19 @@ Template.new_it.events = {
 		if(/^data\:image\/(png|jpg|jpeg)\;/.test(newPost.content)){
 			Its.insert(newPost);
 			alert('Post created!');
-        	document.getElementById('home').click();
+        	document.getElementById('board').click();
     	};
 	}
 	if(Session.equals('post_type', 'draw')){
 		newPost.content = document.getElementById('canvas').toDataURL('image/png');
 		Its.insert(newPost);
 		alert('Post created!');
-        document.getElementById('home').click();
+        document.getElementById('board').click();
 	}
   },
 
   'click button.cancel': function(){
-    document.getElementById('home').click()
+    document.getElementById('board').click()
   },
   'change #imgInput': function(e){
 	console.log(e.target);
