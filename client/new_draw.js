@@ -3,6 +3,7 @@ var ctx;
 var drawing = false;
 var lastX = 0;
 var lastY = 0;
+var resizing = false;
 
 Template.drawPreview.rendered = function(){
     var canvas = $('#canvas')[0];
@@ -88,4 +89,21 @@ Template.drawPreview.events = {
         ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     },
+    'click .resize': function(){
+        if(!resizing){
+            $('#canvas').resizable({
+                maxHeight: 1000,
+                maxWidth: 1000,
+                minHeight: 50,
+                minWidth: 50
+            });
+            $(".resize").html("Stop Resizing");
+            resizing = true;
+        }
+        else{
+            resizing = false;
+            $('#canvas').resizable('destroy');
+            $(".resize").html("Resize Canvas");
+        }
+    }
 }

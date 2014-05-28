@@ -22,23 +22,19 @@ if (Meteor.isClient) {
   Template.page.events = {
     'click a#home': function(){
       Session.set("current_page", "home");
-      console.log(Session.get("current_page"));
+      $('.active').removeClass('active');
     },
     'click a#board': function(){
       Session.set("current_page", "board");
-      console.log(Session.get("current_page"));
     },
     'click a#new_post': function(){
       Session.set("current_page", "new_post");
-      console.log(Session.get("current_page"));
     },
     'click a#list': function(){
       Session.set("current_page", "list");
-      console.log(Session.get("current_page"));
     },
     'click a#teste': function(){
       Session.set("current_page", "teste");
-      console.log(Session.get("current_page"));
     }
   }
 }
