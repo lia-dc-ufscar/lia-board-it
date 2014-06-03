@@ -18,8 +18,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a id="board" data-toggle="tab">The Board</a></li>
-					<li><a id="new_post" data-toggle="tab">New it</a></li>
+					<li><a id="board" data-toggle="tab" class="active"><img src="/img/Notice_Board.jpg" style="height:20px; width:40px;" /></a></li>
 					<li><a id="list" data-toggle="tab">List of its</a></li>
 				</ul>
 			</div>
@@ -43,4 +42,8 @@
 			{{> teste}}
 		{{/if}}
 	</div>
+	<footer>
+		<img id="new_post" src="/img/post-it-block.png" style="height:50px; width:50px; bottom: 2px; left: 4px; position: fixed;" />
+		<img id="trash" src="/img/trash_recyclebin_empty_closed.png" style="height:50px; width:50px; bottom: 0px; position: fixed;right:0px;" />
+	</footer>
 </template>

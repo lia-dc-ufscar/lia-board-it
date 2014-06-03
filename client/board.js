@@ -15,6 +15,16 @@ Template.it.content = function(){
 	return this.content.replace(/\n/gi, '<br>');
 }
 
+Template.board.rendered = function(){
+	$('#trash').droppable({
+		accept: ".post",
+		drop: function(e){
+			console.log(e.toElement.id);
+			Its.remove(e.toElement.id);
+		}
+	});
+}
+
 Template.it.rendered = function(){
 	self = '#'+this.data._id;
 	$(self).resizable({

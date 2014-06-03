@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   Meteor.startup(function(){
-    Session.set("current_page","home");
+    Session.set("current_page","board");
   }),
 
   Template.page.is_home = function(){
@@ -27,7 +27,7 @@ if (Meteor.isClient) {
     'click a#board': function(){
       Session.set("current_page", "board");
     },
-    'click a#new_post': function(){
+    'click #new_post': function(){
       Session.set("current_page", "new_post");
     },
     'click a#list': function(){
