@@ -31,7 +31,7 @@ Template.board.rendered = function(){
 Template.it.rendered = function(){
 	self = '#'+this.data._id;
 	$(self).resizable({
-		maxHeight: 1000,
+		maxHeight: 800,
     	maxWidth: 1000,
     	minHeight: 50,
     	minWidth: 50,
