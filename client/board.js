@@ -16,13 +16,16 @@ Template.it.content = function(){
 }
 
 Template.board.rendered = function(){
-	$('#trash').droppable({
-		accept: ".post",
-		drop: function(e){
-			console.log(e.toElement.id);
-			Its.remove(e.toElement.id);
-		}
-	});
+    $('#trash').droppable({
+      accept: ".post",
+      hoverClass: function(){
+      	console.log('hi');
+      },
+      drop: function(e){
+        console.log(e.toElement.id);
+        Its.remove(e.toElement.id);
+      }
+    });
 }
 
 Template.it.rendered = function(){
@@ -46,7 +49,8 @@ Template.it.rendered = function(){
 			var top = parseInt(this.style.top, 10);
 			var left = parseInt(this.style.left, 10);
 			Its.update(this.id, {$set: {posTop: top, posLeft: left}});
-		}
+		},
+		//revert: "invalid"
 	});
 }
 

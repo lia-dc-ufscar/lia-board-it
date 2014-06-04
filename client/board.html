@@ -1,9 +1,11 @@
 <template name="board">
+	<div id="wrapper">
 	{{#each its}}
 		{{>it}}
 	{{else}}
 		No posts yet.
 	{{/each}}
+	</div>
 	<div class="dropdown">
 	  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
 	    Dropdown

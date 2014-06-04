@@ -14,7 +14,18 @@ footer{
 	word-wrap: break-word;
 	overflow: hidden;
 	cursor: move;
+	box-shadow: 3px 3px 1px #222;
 }
+
+.postcolor{
+	height:50px;
+	width:50px;
+	box-shadow: 1px 1px 1px #222;
+	margin: 5px;
+	position: relative;
+	float: left;
+}
+
 .red{
 	background-color: red;
 }
