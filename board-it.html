@@ -19,8 +19,8 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a id="board" data-toggle="tab" class="active"><img src="/img/Notice_Board.jpg" style="height:20px; width:40px;" /></a></li>
-					<li><a id="new_post" data-toggle="tab"><img src="/img/post-it-block.png" style="height:25px; width:25px;" /></a></li>
-					<li><a id="list" data-toggle="tab">Its list</a></li>
+					<li><a id="new_post" data-toggle="tab"><img src="/img/post-it-block.png" style="height:20px; width:20px;" /></a></li>
+					<li><a id="list" data-toggle="tab"><img src="/img/list.png" style="height:20px; width:20px;" /></a></li>
 				</ul>
 			</div>
 		</div>
@@ -40,11 +40,16 @@
 			{{> new_it}}
 		{{/if}}
 		{{#if is_teste}}
-			{{> teste}}
+			{{> teste2}}
 		{{/if}}
 	</div>
 	<footer>
-		
-		<img id="trash" src="/img/trash_recyclebin_empty_closed.png" style="height:50px; width:50px; bottom: 0px; position: fixed;right:0px;" />
+		<div class="white postcolor"></div>
+		<div class="yellow postcolor"></div>
+		<div class="red postcolor"></div>
+		<div class="green postcolor"></div>
+		<div class="blue postcolor"></div>
+		<div class="black postcolor"></div>
+		<img id="trash" src="/img/trash_recyclebin_empty_closed.png" style="height:50px; width:50px; bottom: 5px; position: fixed;right:5px;" />
 	</footer>
 </template>

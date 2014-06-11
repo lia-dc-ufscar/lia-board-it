@@ -1,3 +1,5 @@
+var inkColor = 'black';
+
 Template.board.its = function(){
 	return Its.find({});
 }
@@ -44,6 +46,8 @@ Template.it.rendered = function(){
 	$(self).draggable({
 		start: function( event, ui ) {
 			console.log("picked");
+			var highestZIndex = Its.findOne({}, {sort: {zIndex: -1}});
+			Its.update(this.id, {$set: {zIndex: highestZIndex.zIndex}});
 		},
 		stop: function( event, ui ) {
 			var top = parseInt(this.style.top, 10);

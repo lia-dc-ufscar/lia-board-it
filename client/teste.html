@@ -1,15 +1,13 @@
-<template name="teste">
+<template name="teste2">
 	<br><br>
 	<center>
-		<canvas id="canvas" width="500" height="500" style="border: 1px dashed black">Click to draw<br/></canvas>
-		<canvas id="canvas2" width="500" height="500" style="border: 1px dashed black" ></canvas>
-		{{#each drawsteps}}
-			{{ >step}}
-		{{/each}}
+		<canvas id="canvas" width="400" height="400" style="border: 1px double black" ></canvas>
 		<br>
-		<button class="btn btn-default"> Clear </button>
+		<div class="form-group">
+			<center>
+				<button type="button" class="btn btn-default submit"><img id="trash" src="/img/check.png" style="height:50px; width:50px;" /></button>
+				<button type="button" class="btn btn-danger cancel"><img id="trash" src="/img/trash_recyclebin_empty_closed.png" style="height:50px; width:50px;" /></button>
+			</center>
+		</div>
 	</center>
-</template>
-
-<template name="step">
 </template>

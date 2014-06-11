@@ -3,96 +3,154 @@ var ctx;
 var drawing = false;
 var lastX = 0;
 var lastY = 0;
+var resizing = false;
+var originalHeight = 400;
+var originalWidth = 400;
 
-var clearCanvas = function(){
+Template.teste2.rendered = function(){
     canvas = $('#canvas')[0];
-    var ctx = canvas.getContext('2d');
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);    
-    console.log('cleared');    
-};
-
-Template.teste.drawsteps = function(){
-  return Drawsteps.find({}, {sort: {date: -1}});
+    ctx = canvas.getContext('2d');
+    ctx.lineWidth = 5;//document.getElementById("stroke").value;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = Session.get("bgColor");
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.fill();
 }
-
-Template.teste.rendered = function(){
-	drawsteps = Drawsteps.find({}, {sort: {date: -1}});
-    globalStream.on('clear', function(message){
-        clearCanvas();
-    });
-    /*
-    globalSream.on('drawstep', function(x,y)){
-        var canvas = $('#canvas2')[0];
-        var ctx = canvas.getContext('2d');
-    };
-    */
-}
-Template.step.rendered = function(e){
-    var canvas = $('#canvas')[0];
-	var ctx = canvas.getContext('2d');
-	ctx.beginPath();
-    ctx.moveTo(this.data.begin.x, this.data.begin.y);
-    ctx.lineTo(this.data.end.x, this.data.end.y);
-    ctx.stroke();
-
-    /*
-	debugger
-	$('.line').each(function(){
-		console.log('here');
-		values = $(this).text().split(",")
-	    ctx.beginPath();
-	    ctx.moveTo(parseInt(values[0],10), parseInt(values[1],10));
-	    ctx.lineTo(parseInt(values[2],10),parseInt(values[3],10));
-	    ctx.stroke();
-	    $(this).remove();
-	});
-	console.log('rendered');
-	*/
-}
-
-Template.teste.events = {
-	'mousemove #canvas': function(e){
-		if(!drawing)
-			return;
-        var x = e.pageX - e.target.offsetLeft;
-        var y = e.pageY - e.target.offsetTop;
-        Drawsteps.insert({begin: {x: lastX, y: lastY}, end: {x: x, y:y}, date: new Date});
-        lastX = x;
-        lastY = y;
-        drawsteps = Drawsteps.find({}, {sort: {date: -1}});
-	},
-	'mousedown #canvas': function(e){
-		drawing = true;
-		lastX = e.pageX - e.target.offsetLeft;
-		lastY = e.pageY - e.target.offsetTop;
-	},
-	'mouseup #canvas': function(e){
-		drawing = false;
-	},
-	'click .btn-default': function(){
-		Meteor.call('clear_canvas', function(err){
-            console.log('Success!');
-        });
-        globalStream.emit('clear', {});
-        //clearCanvas();
-	},
-    'touchstart #canvas': function(e){
-        var touchEvent = e.originalEvent.changedTouches[0];
+/*
+Template.teste2.events = {
+    'change #bgColor': function(){
+        backgroundColor= document.getElementById("bgColor").value;
+        if(backgroundColor == "transparent"){
+            canvas = $('#canvas')[0];
+            ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            return;
+        }
+        canvas = $('#canvas')[0];
+        ctx = canvas.getContext('2d');
+        ctx.fillStyle = backgroundColor;
+        console.log('color is now ' + ctx.fillStyle);
+        ctx.rect(0, 0, canvas.width, canvas.height);
+        ctx.fill();
+     },
+    'change #stroke': function(){
         var canvas = $('#canvas')[0];
         var ctx = canvas.getContext('2d');
+        stroke = document.getElementById("stroke").value;
+        if (stroke < 1)
+            stroke = 1;
+        if (stroke > 20)
+            stroke = 20;
+        ctx.lineWidth = stroke;
+        console.log(ctx.lineWidth);
+    }
+}
+*/
+Template.teste2.events = {
+    'change #stroke': function(){
+        var canvas = $('#canvas')[0];
+        var ctx = canvas.getContext('2d');
+        stroke = document.getElementById("stroke").value;
+        if (stroke < 1)
+            stroke = 1;
+        if (stroke > 20)
+            stroke = 20;
+        ctx.lineWidth = stroke;
+        console.log(ctx.lineWidth);
+    },
+
+    'mousedown #canvas': function(e){
+        drawing = true;
+        lastX = e.pageX - e.target.offsetLeft;
+        lastY = e.pageY - e.target.offsetTop;
+    },
+    'mouseup #canvas': function(e){
+        drawing = false;
+    },
+    'mousemove #canvas': function(e){
+        if(!drawing)
+            return;
+
+        var x = e.pageX - e.target.offsetLeft;
+        console.log(x);
+        var y = e.pageY - e.target.offsetTop;
+        var currentWidth = $('#canvas').width();
+        var currentHeight = $('#canvas').height();
+        var relX = (x/currentWidth)*originalWidth;
+        var relLastX = (lastX/currentWidth)*originalWidth;
+        var relY = (y/currentHeight)*originalHeight;
+        var relLastY = (lastY/currentHeight)*originalHeight;
         ctx.beginPath();
-        ctx.moveTo(touchEvent.pageX - e.target.offsetLeft, touchEvent.pageY - e.target.offsetTop);
+        ctx.moveTo(relLastX, relLastY);
+        ctx.lineTo(relX, relY);
+        //ctx.strokeStyle = document.getElementById("inkColor").value;
+        ctx.stroke();
+        lastX = x;
+        lastY = y;
+    },
+    'touchstart #canvas': function(e){
+        var touchEvent = e.originalEvent.changedTouches[0];
+        lastX = touchEvent.pageX - e.target.offsetLeft;
+        lastY = touchEvent.pageY - e.target.offsetTop;
     },
     'touchmove #canvas': function(e){
         var touchEvent = e.originalEvent.changedTouches[0];
         e.preventDefault();
         var canvas = $('#canvas')[0];
         var ctx = canvas.getContext('2d');
-        Drawsteps.insert({begin: {x: lastX, y: lastY}, end: {x: x, y:y}, date: new Date});
         var x = touchEvent.pageX - e.target.offsetLeft;
         var y = touchEvent.pageY - e.target.offsetTop;
-        ctx.lineTo(x, y);
+        var currentWidth = $('#canvas').width();
+        var currentHeight = $('#canvas').height();
+        var relX = (x/currentWidth)*originalWidth;
+        var relLastX = (lastX/currentWidth)*originalWidth;
+        var relY = (y/currentHeight)*originalHeight;
+        var relLastY = (lastY/currentHeight)*originalHeight;
+        ctx.beginPath();
+        ctx.moveTo(relLastX, relLastY);
+        ctx.lineTo(relX, relY);
+        //ctx.strokeStyle = document.getElementById("inkColor").value;
         ctx.stroke();
+        lastX = x;
+        lastY = y;
+    },
+    'click button.submit': function(){
+        newPost = new It("image");
+        newPost.content = document.getElementById('canvas').toDataURL('image/png');
+        newPost.height = 200;
+        newPost.width = 200;
+        newPost.posTop = Session.get("posTop");
+        newPost.posLeft =  Session.get("posLeft");
+        newPost.date = new Date;
+        var highestZIndex = Its.findOne({}, {sort: {zIndex: -1}});
+        newPost.zIndex = highestZIndex.zIndex;
+        console.log('clicked');
+        Its.insert(newPost);
+        document.getElementById('board').click();
+    },
+    'click .clear': function(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    },
+    'click button.cancel': function(){
+        document.getElementById('board').click()
+    },
+    'click .resize': function(){
+        if(!resizing){
+            $('#canvas').resizable({
+                maxHeight: 1000,
+                maxWidth: 1000,
+                minHeight: 50,
+                minWidth: 50
+            });
+            $(".resize").html("Stop Resizing");
+            resizing = true;
+        }
+        else{
+            resizing = false;
+            $('#canvas').resizable('destroy');
+            $(".resize").html("Resize Canvas");
+        }
     }
 }

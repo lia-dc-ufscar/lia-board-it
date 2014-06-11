@@ -1,0 +1,15 @@
+<template name="teste">
+	<br><br>
+	<center>
+		<canvas id="canvas" width="500" height="500" style="border: 1px dashed black">Click to draw<br/></canvas>
+		<canvas id="canvas2" width="500" height="500" style="border: 1px dashed black" ></canvas>
+		{{#each drawsteps}}
+			{{ >step}}
+		{{/each}}
+		<br>
+		<button class="btn btn-default"> Clear </button>
+	</center>
+</template>
+
+<template name="step">
+</template>

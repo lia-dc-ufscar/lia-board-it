@@ -25,6 +25,17 @@ footer{
 	position: relative;
 	float: left;
 }
+.editactive{
+	border:2px solid black;
+}
+.editmode{
+	height:50px;
+	width:50px;
+	box-shadow: 1px 1px 1px #222;
+	margin: 5px;
+	position: relative;
+	float: left;
+}
 
 .red{
 	background-color: red;
